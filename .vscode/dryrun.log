@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/fnieves-/Documents/Proyectos/get next line proyect/2intento_perfect'
+make: Leaving directory `/Users/fnieves-/Documents/Proyectos/get next line proyect/2intento_perfect'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
