@@ -8,7 +8,7 @@
             "name": "Debug compiled program",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/fnieves-/Documents/Proyectos/get next line proyect/2intento/a.out",
+            "program": "/Users/fnieves-/Documents/Proyectos/get next line proyect/2intento_perfect/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${cwd}",

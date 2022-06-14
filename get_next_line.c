@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:50:37 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 19:18:42 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:37:49 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,23 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUF_SIZE < 1 || fd > NUMB_FILE_DESCR || (read(fd, &line, BUF_SIZE) < 0))
 		return (NULL);
+	printf("hast aqui ok 0 \n");
 	ft_read_and_stash(fd, &head);
 	if (!head.header)
 		return (NULL);
+	printf("hast aqui ok 1 \n");
 	ft_extract_line(&head, &line);
+	printf("hast aqui ok 2 \n");
 	ft_clean_stash(&head);
+	printf("hast aqui ok 3 \n");
+
 	if (!line[0])
 	{
 		free (line);
 		ft_free_list(&head);
 		return (NULL);
 	}
+	printf("hast aqui ok ultimo \n");
 	return (line);
 }
 
@@ -42,13 +48,16 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 	if (!buff)
 		return ;
 	readed = 1;
-	while (readed && !ft_found_newline(head))
+
+	while (readed && !ft_found_newline(head)) //no esta saliendo de este bucle
 	{
+		//printf("read and stash 0 \n");
 		readed = read(fd, buff, BUF_SIZE);
 		buff[readed] = 0;
 		head->element_list = head->element_list + 1;
 		ft_add_to_stash(head, buff, readed);
 	}
+	printf("read and stash 1 \n");
 	if (!readed && !head->element_list)
 	{
 		free(buff);
@@ -82,6 +91,7 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed) //anadir el nume
 		head->header = new_node;
 		return ;
 	}
+	//printf("ft_ad to stash 0 \n"); esto lo lee
 	last_node = ft_lst_get_last(head);
 	last_node->next = new_node;
 }
