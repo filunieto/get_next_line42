@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 20:59:49 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/13 20:02:04 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 23:25:18 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ char	*get_next_line(int fd)
 	/* 2. Ya tenemos la lista en la que en el ultimo nodo se encuentra un caracter \n*/
 	extract_line(&head[fd], &line);
 	clean_stash(&head[fd]);
-	//print_list(&head);
+	//print_node(&head);
 	//imprime_atope(line);
 	if (!line[0])  // Atencion
 	{
 		//printf("\nHasta aqui leyo. Fin de texto\n");
-		free_stash(&head[fd]);
+		ft_delete_list(&head[fd]);
 		free(line);
 		return (NULL);
 	}
@@ -50,7 +50,7 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 	if (!buff)
 		return ;
 	//printf("abajo imprimo la lista antes de netrar en found_newline\n");
-	//print_list(head);
+	//print_node(head);
 	readed = 1;
 	
 	while (readed && !found_newline(head))
@@ -60,8 +60,8 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 		//1. anadir una condicion de haber llegado al final del texto y seguir con la lista vacia (texto vacio). Ponerla aqui o inmediatamnte fuera del while
 		buff[readed] = 0;
 		//printf("buff 1 , dentro de las condiciones %s\n", buff);
-		head->elementos_lista = head->elementos_lista + 1;
-		add_to_stash(head, buff, readed);
+		head->list_elements = head->list_elements + 1;
+		ft_add_to_stash(head, buff, readed);
 	}
 	if ((!readed && !head->header) || readed < 0)
 	{
@@ -75,14 +75,14 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 
 /* Add the buffer to the list in a new node and place it at the end */
 
-void	add_to_stash(t_head_list *head, char *buff, int readed) //podemos prescindir de int readed?
+void	ft_add_to_stash(t_head_list *head, char *buff, int readed) //podemos prescindir de int readed?
 {
-	t_list	*new_node;
-	t_list *last;
+	t_node	*new_node;
+	t_node *last;
 	int	i;
 
 	i = 0;
-	new_node = (t_list *)malloc(sizeof(t_list));
+	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
 		return ;
 	new_node->next = NULL;
@@ -111,7 +111,7 @@ void	add_to_stash(t_head_list *head, char *buff, int readed) //podemos prescindi
 
 void	extract_line(t_head_list *head, char **line)
 {
-	t_list	*temp;
+	t_node	*temp;
 	int	i;
 	int len;
 	
@@ -152,11 +152,11 @@ borramos la lista, y le agregamos este nuevo nodo, clean node.
 */
 void	clean_stash(t_head_list *head)
 {
-	t_list	*clean_node;
-	t_list	*last;
+	t_node	*clean_node;
+	t_node	*last;
 	int i;
 	
-	clean_node =(t_list *)malloc(sizeof(t_list));
+	clean_node =(t_node *)malloc(sizeof(t_node));
 	if (!clean_node || !head->header)
 		return ;
 	clean_node->next = NULL;
@@ -179,11 +179,11 @@ void	clean_stash(t_head_list *head)
 	clean_node->char_readed = i; //caracteres en el nodo sin el nullterminated
 	// printf(" clean node, numero char en string de los caacteres no impresos %i\n", clean_node->char_readed);
 	// printf("string que queda en el clean_node: %s\n", clean_node->content);
-	free_stash(head);
+	ft_delete_list(head);
 	head->header = clean_node;
-	head->elementos_lista = 1;
+	head->list_elements = 1;
 	// printf("\nabajo la lista que borrada y con el nuevo nodo\n");
-	// print_list(head);
+	// print_node(head);
 }
 
 // Nota general:

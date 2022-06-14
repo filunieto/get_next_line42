@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/12 20:12:48 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 23:25:18 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
  /* Parsing last element of the list to find the \n */
 int	found_newline(t_head_list *head)
 {
-	t_list	*last;
+	t_node	*last;
 	int	i;
 
 	if (!head->header)
@@ -31,9 +31,9 @@ int	found_newline(t_head_list *head)
 
 /* Return the last element of the list */
 
-t_list	*ft_lst_get_last(t_head_list *head)
+t_node	*ft_lst_get_last(t_head_list *head)
 {	
-	t_list	*last;
+	t_node	*last;
 
 	if(!head)
 		return (NULL);
@@ -50,7 +50,7 @@ void	generate_line(t_head_list *head, char **line)
 {
 	int	i;
 	int len;
-	t_list	*temp;
+	t_node	*temp;
 	
 	len = 0;
 	temp = head->header;
@@ -68,10 +68,10 @@ void	generate_line(t_head_list *head, char **line)
 
 }
 
-void	free_stash(t_head_list *head) 
+void	ft_delete_list(t_head_list *head) 
 {
-	t_list *current;
-	t_list *next;
+	t_node *current;
+	t_node *next;
 	
 	if(!head->header)
 		return ;
@@ -85,7 +85,7 @@ void	free_stash(t_head_list *head)
 	}
 	head->header = NULL;
 	// printf("\n lista que ha quedado desopues de vaciar\n");
-	// print_list(head);
+	// print_node(head);
 }
 
 int	ft_strlen(const char *str)
@@ -100,9 +100,9 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-void	print_list(t_head_list *head)
+void	print_node(t_head_list *head)
 {
-	t_list *stash;
+	t_node *stash;
 
 	if (!head || !head->header)
 	{
@@ -116,7 +116,7 @@ void	print_list(t_head_list *head)
 		printf("content: %s|| char en nodo: %i \n", stash->content, stash->char_readed);
 		stash = stash->next;
 	}
-	printf("ultimo content: %s|| char en nodo: %i \n || Elementos en la lista %i\n", stash->content, stash->char_readed, head->elementos_lista);
+	printf("ultimo content: %s|| char en nodo: %i \n || Elementos en la lista %i\n", stash->content, stash->char_readed, head->list_elements);
 	printf("===fin de lista===\n");
 }
 
