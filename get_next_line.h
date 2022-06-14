@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:50:40 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 11:22:40 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 13:29:15 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ typedef struct s_head_list
 
 char	*get_next_line(int fd);
 void	ft_read_and_stash(int fd, t_head_list *head);
-void	add_to_stash(t_head_list *head, char *buff, int readed);
+void	ft_add_to_stash(t_head_list *head, char *buff, int readed);
 void	ft_clean_stash(t_head_list *head);
 void	ft_extract_line(t_head_list *head, char **line);
-int		found_newline(t_head_list *head);
+int		ft_found_newline(t_head_list *head);
 t_node	*ft_lst_get_last(t_head_list *head);
-void	generate_line(t_head_list *head, char **line);
+void	ft_generate_line(t_head_list *head, char **line);
 void	free_stash(t_head_list *head);
 int		ft_strlen(const char *str);
 

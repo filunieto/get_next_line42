@@ -23,7 +23,7 @@ typedef struct s_head_list
 }t_head_list;
 
 void	print_list(t_head_list *head);
-void	add_to_stash(t_head_list *head, char *buff);
+void	ft_add_to_stash(t_head_list *head, char *buff);
 t_list	*ft_lst_get_last(t_head_list *head);
 int	found_newline(t_head_list *head);
 int	ft_strlen(const char *str);
@@ -57,7 +57,7 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 	{
 		//1. anadir una condicion de haber llegado al final del texto y seguir con la lista vacia (texto vacio). Ponerla aqui o inmediatamnte fuera del while
 		buff[readed] = 0;
-		add_to_stash(head, buff);
+		ft_add_to_stash(head, buff);
 	}
 	if (readed == 0 && !head->header)
 	{
@@ -70,7 +70,7 @@ void	ft_read_and_stash(int fd, t_head_list *head)
 }
 
 
-void	add_to_stash(t_head_list *head, char *buff) //podemos prescindir de int readed?
+void	ft_add_to_stash(t_head_list *head, char *buff) //podemos prescindir de int readed?
 {
 	t_list	*new_node;
 	t_list *last;
