@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:50:37 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 13:57:52 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:18:42 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*get_next_line(int fd)
 	ft_clean_stash(&head);
 	if (!line[0])
 	{
-		//free todo, stash y linea
+		free (line);
+		ft_free_list(&head);
 		return (NULL);
 	}
 	return (line);
@@ -87,10 +88,58 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed) //anadir el nume
 
 void	ft_extract_line(t_head_list *head, char **line)
 {
+	int	len_line;
+	t_node	*current;
+	int	i;
+	int	j;
 	
+	if(!head->header || !head)
+		return ;
+	ft_generate_line(head, line);
+	if (!line)
+		return ;
+	current = head->header;
+	j = 0;
+	while (current)
+	{
+		i = 0;
+		while (current->content[i])
+		{
+			if (current->content[i] == '\n')
+			{
+				*line[j++] = current->content[i];
+				break;
+			}
+			*line[j++] = current->content[i++];
+		}
+		current = current->next;
+	}
+	*line[j] = 0;
 }
 
 void	ft_clean_stash(t_head_list *head)
 {
-	
+	t_node	*last;
+	t_node	*new_node;
+	int	i;
+
+	if (!head || !head->header)
+		return ;
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!new_node)
+		return ;
+	last = ft_lst_get_last(head);
+	new_node->content = (char *)malloc(sizeof(char) * (last->leng_content - last->position_nl)); //va incluido el 0
+	if (!new_node->content)
+		return ;
+	i = 0;
+	while (last->content[last->position_nl + 1 + i])
+	{
+		new_node->content[i] = last->content[last->position_nl + 1 + i];
+		i++;
+	}
+	new_node->content[i] = 0;
+	ft_free_list(head);
+	head->header = new_node;
+	head->element_list = 1;
 }

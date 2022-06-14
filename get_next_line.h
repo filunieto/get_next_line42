@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 20:50:40 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 13:29:15 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:15:25 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 typedef struct s_node
 {
 	char			*content;
-	int				char_readed;
+	int				leng_content;
+	int				position_nl;
 	struct s_node	*next;
 }					t_node;
 
@@ -46,10 +47,11 @@ void	ft_extract_line(t_head_list *head, char **line);
 int		ft_found_newline(t_head_list *head);
 t_node	*ft_lst_get_last(t_head_list *head);
 void	ft_generate_line(t_head_list *head, char **line);
-void	free_stash(t_head_list *head);
+void	ft_free_list(t_head_list *head);
 int		ft_strlen(const char *str);
 
 void	print_list(t_head_list *head);//de auqi abajo borrar
-void imprime_atope(char	*s);//de auqi abajo borrar
+void	imprime_atope(char	*s);//de auqi abajo borrar
+void	print_list_numbers(t_head_list *head);
 
 #endif
