@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 23:54:27 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:09:21 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	generate_line(t_head_list *head, char **line)
 			i++;
 			len++;
 		}
+		temp->char_readed = i;
 		temp = temp->next;
 	}
 	*line = (char *)malloc(sizeof(char) * (len + 1));

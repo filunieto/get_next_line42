@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 20:59:49 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 23:54:17 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:14:25 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed)
 		i++;
 	}
 	new_node->content[i] = 0;
-	new_node->char_readed = i; //hay qu eponer esto en otro lado
 	if (!head->header)
 	{
 		head->header = new_node;
@@ -104,8 +103,6 @@ void	extract_line(t_head_list *head, char **line)
 	if (!head->header || !head)
 		return ;
 	generate_line(head, line);
-	if (!*line)
-		return ;
 	temp = head->header;
 	len = 0;
 	while (temp)
@@ -120,7 +117,6 @@ void	extract_line(t_head_list *head, char **line)
 			}
 			(*line)[len++] = temp->content[i++];
 		}
-		temp->char_readed = i;
 		temp = temp->next;
 	}
 	(*line)[len] = 0;
