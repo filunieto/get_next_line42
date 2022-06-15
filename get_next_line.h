@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:20:22 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 23:24:27 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:23:23 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_next_line(int fd);
 void	ft_read_and_stash(int fd, t_head_list *head);
 void	ft_add_to_stash(t_head_list *head, char *buff, int readed);
 void	clean_stash(t_head_list *head);
-void	extract_line(t_head_list *head, char **line);
+void	ft_extract_line(t_head_list *head, char **line);
 int		found_newline(t_head_list *head);
 t_node	*ft_lst_get_last(t_head_list *head);
 void	generate_line(t_head_list *head, char **line);

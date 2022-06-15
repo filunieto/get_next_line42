@@ -34,7 +34,7 @@ char	*get_next_line(int fd);
 void	ft_read_and_stash(int fd, t_head_list *head);
 void	ft_add_to_stash(t_head_list *head, char *buff, int readed);
 void	clean_stash(t_head_list *head);
-void	extract_line(t_head_list *head, char **line);
+void	ft_extract_line(t_head_list *head, char **line);
 
 int		found_newline(t_head_list *head);
 t_node	*ft_lst_get_last(t_head_list *head);

@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 20:59:49 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/15 12:14:25 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:33:08 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 	ft_read_and_stash(fd, &head);
 	if (!head.header)
 		return (NULL);
-	extract_line(&head, &line);
+	ft_extract_line(&head, &line);
 	clean_stash(&head);
 	if (!line[0])
 	{
@@ -34,6 +34,10 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
+
+/* It reads the file while it does not find \n, 
+ and calls the function to create a new node with the read buffer. 
+It has to read the file at least once. */
 
 void	ft_read_and_stash(int fd, t_head_list *head)
 {
@@ -94,7 +98,7 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed)
  in the stash, move to another var for printing
  and leaves the rest*/
 
-void	extract_line(t_head_list *head, char **line)
+void	ft_extract_line(t_head_list *head, char **line)
 {
 	t_node	*temp;
 	int		i;
@@ -103,24 +107,25 @@ void	extract_line(t_head_list *head, char **line)
 	if (!head->header || !head)
 		return ;
 	generate_line(head, line);
+	if (line == NULL)
+		return ;
 	temp = head->header;
 	len = 0;
 	while (temp)
 	{
 		i = 0;
-		while (temp->content[i])
-		{
-			if (temp->content[i] == '\n')
-			{
-				(*line)[len++] = temp->content[i];
-				break ;
-			}
+		while (temp->content[i] && temp->content[i] != '\n')
 			(*line)[len++] = temp->content[i++];
-		}
+		if (temp->content[i] == '\n')
+			(*line)[len++] = '\n';
 		temp = temp->next;
 	}
 	(*line)[len] = 0;
 }
+
+/* Creates  clean node, in which is stored what has not been returned
+in the line immediately after /n, deletes all previous items
+in the list, and at the end adds the clean node */
 
 void	clean_stash(t_head_list *head)
 {

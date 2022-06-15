@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 20:59:49 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 23:25:18 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:23:23 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_next_line(int fd)
 	if (!head[fd].header) // Atencion
 		return (NULL);
 	/* 2. Ya tenemos la lista en la que en el ultimo nodo se encuentra un caracter \n*/
-	extract_line(&head[fd], &line);
+	ft_extract_line(&head[fd], &line);
 	clean_stash(&head[fd]);
 	//print_node(&head);
 	//imprime_atope(line);
@@ -109,7 +109,7 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed) //podemos presci
  in the stash, move to another var for printing
  and leaves the rest*/
 
-void	extract_line(t_head_list *head, char **line)
+void	ft_extract_line(t_head_list *head, char **line)
 {
 	t_node	*temp;
 	int	i;

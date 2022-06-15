@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/15 12:09:21 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:34:39 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_node	*ft_lst_get_last(t_head_list *head)
 }
 
 /* Calculates number of char in current line, including \n if found
-and allocates memory */
+and allocates memory, returnigthie malloc of the line */
 
 void	generate_line(t_head_list *head, char **line)
 {
@@ -85,16 +85,4 @@ void	ft_delete_list(t_head_list *head)
 		current = next;
 	}
 	head->header = NULL;
-}
-
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
 }
