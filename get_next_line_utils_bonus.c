@@ -6,17 +6,18 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/14 23:25:18 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:40:51 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
- /* Parsing last element of the list to find the \n */
+/* Parsing last element of the list to find the \n */
+
 int	found_newline(t_head_list *head)
 {
 	t_node	*last;
-	int	i;
+	int		i;
 
 	if (!head->header)
 		return (0);
@@ -35,7 +36,7 @@ t_node	*ft_lst_get_last(t_head_list *head)
 {	
 	t_node	*last;
 
-	if(!head)
+	if (!head)
 		return (NULL);
 	last = head->header;
 	while (last->next)
@@ -44,14 +45,14 @@ t_node	*ft_lst_get_last(t_head_list *head)
 }
 
 /* Calculates number of char in current line, including \n if found
-and allocates memory */
+and allocates memory, returnigthie malloc of the line */
 
 void	generate_line(t_head_list *head, char **line)
 {
-	int	i;
-	int len;
+	int		i;
+	int		len;
 	t_node	*temp;
-	
+
 	len = 0;
 	temp = head->header;
 	while (temp)
@@ -62,18 +63,18 @@ void	generate_line(t_head_list *head, char **line)
 			i++;
 			len++;
 		}
+		temp->char_readed = i;
 		temp = temp->next;
 	}
 	*line = (char *)malloc(sizeof(char) * (len + 1));
-
 }
 
-void	ft_delete_list(t_head_list *head) 
+void	ft_delete_list(t_head_list *head)
 {
-	t_node *current;
-	t_node *next;
-	
-	if(!head->header)
+	t_node	*current;
+	t_node	*next;
+
+	if (!head->header)
 		return ;
 	current = head->header;
 	while (current)
@@ -84,53 +85,4 @@ void	ft_delete_list(t_head_list *head)
 		current = next;
 	}
 	head->header = NULL;
-	// printf("\n lista que ha quedado desopues de vaciar\n");
-	// print_node(head);
-}
-
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
-void	print_node(t_head_list *head)
-{
-	t_node *stash;
-
-	if (!head || !head->header)
-	{
-		printf("lista vacia\n");
-		return ;
-	}
-	printf("===comienzo de lista===\n");
-	stash = head->header;
-	while (stash->next)
-	{
-		printf("content: %s|| char en nodo: %i \n", stash->content, stash->char_readed);
-		stash = stash->next;
-	}
-	printf("ultimo content: %s|| char en nodo: %i \n || Elementos en la lista %i\n", stash->content, stash->char_readed, head->list_elements);
-	printf("===fin de lista===\n");
-}
-
-void imprime_atope(char	*s)
-{
-	printf("===string a impimri con nullterminated ===\n");
-	int i = 0;
-	while (s[i])
-	{
-		printf("%c",s[i]);
-		i++;	
-	}
-	if (s[i] == 0)
-		printf("\n===caracteres impresos %i ===\n", i + 1);
-	else 
-		printf("\n===ultimo char impresos no es 0 %i ===\n", i + 1);	
 }
