@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 20:59:49 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/15 12:33:08 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:39:30 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static t_head_list	head;
+	static t_head_list	head; //static lo inicializa a NULL automaticamente
 	char				*line;
 
 	if (fd < 0 || BUF_SIZE < 1 || (read(fd, &line, 0) < 0) \
@@ -77,8 +77,11 @@ void	ft_add_to_stash(t_head_list *head, char *buff, int readed)
 		return ;
 	new_node->next = NULL;
 	new_node->content = (char *)malloc(sizeof(char) * (readed + 1));
-	if (!new_node->content)
+	if (!new_node->content) // atencion: (1) estamos retornando sin hacer un free en new_node que hemos malloqueado en 75
+	{
+		free(new_node); //nueva linea (1)
 		return ;
+	}
 	while (buff[i])
 	{
 		new_node->content[i] = buff[i];
