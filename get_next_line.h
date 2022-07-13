@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:20:22 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/15 12:23:23 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:14:04 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# ifndef BUF_SIZE
-#  define BUF_SIZE 42
-# endif
+// # ifndef BUFFER_SIZE
+// #  define BUFFER_SIZE 42
+// # endif
 
 # define NUMB_FILE_DESCR 1024
 
 typedef struct s_node
 {
 	char			*content;
-	int				char_readed;
 	struct s_node	*next;
 }t_node;
 
 typedef struct s_head_list
 {
 	t_node	*header;
-	int		list_elements;
 }t_head_list;
 
 char	*get_next_line(int fd);

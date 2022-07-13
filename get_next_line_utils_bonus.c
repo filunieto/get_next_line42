@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/06/15 12:40:51 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:11:49 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,21 @@ void	generate_line(t_head_list *head, char **line)
 	while (temp)
 	{
 		i = 0;
-		while (temp->content[i] && temp->content[i] != '\n')
+		while (temp->content[i])
 		{
+			if (temp->content[i] == '\n')
+			{
+				len++;
+				break ;
+			}
 			i++;
 			len++;
 		}
-		temp->char_readed = i;
 		temp = temp->next;
 	}
 	*line = (char *)malloc(sizeof(char) * (len + 1));
+	if (*line == NULL)
+		return ;
 }
 
 void	ft_delete_list(t_head_list *head)
@@ -85,4 +91,14 @@ void	ft_delete_list(t_head_list *head)
 		current = next;
 	}
 	head->header = NULL;
+}
+
+int	ft_strlen(const char *str)
+{
+	int	len;
+
+	len = 0;
+	while (*(str++))
+		len++;
+	return (len);
 }

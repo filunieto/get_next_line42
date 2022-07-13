@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 07:57:36 by nikito            #+#    #+#             */
-/*   Updated: 2022/06/15 12:07:12 by fnieves-         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:42:31 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int main()
 	char	*line;
 	//int i = 10;
 
-	atexit(check);
-	fd = open("test/texto2.txt", O_RDONLY);
+	//atexit(check);
+	//fd = open("test/1-brouette.txt", O_RDONLY);
+	fd = open("test/1-brouette.txt", O_RDONLY);
+	//fd = open("test/9-linew.txt", O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(fd);
